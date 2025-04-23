@@ -104,3 +104,20 @@ Follow these steps to set up the project on your local machine using the ZIP fil
 ![Image 6](scrnli_kPz3aJ1JA0LITc.png)
 ## Send Queries to Admin
 ![Image 7](scrnli_weHy2X1u20kBBh.png)
+
+## Acknowledgements
+
+I would like to acknowledge the use of the following tools, libraries, and frameworks:
+- **Python** – For being the primary programming language used in this project.
+- **Django** – For providing a robust framework for developing the job portal application.
+- **GitHub** – For hosting and managing the project repository.
+- **HTML** – For structuring the content of the webpage.
+- **CSS** – For styling the webpage and making it visually appealing.
+- **JavaScript** – For adding interactivity and dynamic behavior to the webpage.
+- **Bootstrap** – For providing a responsive design framework to ensure the webpage works well on all devices.
+
+## Contact
+
+If you have any questions or feedback about this project, feel free to reach out!
+
+- **Email**: [harigovind9400@gmail.com](mailto:harigovind9400@gmail.com)
