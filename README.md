@@ -24,7 +24,6 @@ This Python-based Online Job Portal, developed using the Django web framework, s
   -Edit personal information, update the resume, and apply to new job listings at any time.
 
 -**Admin Dashboard:**
-
 -Review and approve newly registered companies; only approved companies (AC) can post jobs and access the platform fully.
 -Manage all user and company accounts, with options to deactivate, delete, or update access rights.
 -Monitor job postings across the platform, including the ability to delete inappropriate or expired listings.
