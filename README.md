@@ -15,21 +15,21 @@ This Python-based Online Job Portal, developed using the Django web framework, s
   - Shortlisted candidates are assigned with an Interview date and an Email verification about the Interview Details.
   - After Interview company either appoint the user or reject him/her. An Email conformation is also provided here.
     
--**User Dashboard:**
-  -Create and manage a personal profile with professional details, including resume upload and skills.
-  -Browse and apply for job vacancies based on preferred criteria such as skill sets, location, and qualifications.
-  -Track the status of job applications, with notifications for updates such as "Shortlisted" or "Interview Date Fixed."
-  -View detailed job descriptions along with company profiles and job requirements before applying.
-  -Receive email notifications about the application status, interview schedules, and any other updates from companies.
-  -Edit personal information, update the resume, and apply to new job listings at any time.
+- **User Dashboard:**
+  - Create and manage a personal profile with professional details, including resume upload and skills.
+  - Browse and apply for job vacancies based on preferred criteria such as skill sets, location, and qualifications.
+  - Track the status of job applications, with notifications for updates such as "Shortlisted" or "Interview Date Fixed."
+  - View detailed job descriptions along with company profiles and job requirements before applying.
+  - Receive email notifications about the application status, interview schedules, and any other updates from companies.
+  - Edit personal information, update the resume, and apply to new job listings at any time.
 
--**Admin Dashboard:**
--Review and approve newly registered companies; only approved companies (AC) can post jobs and access the platform fully.
--Manage all user and company accounts, with options to deactivate, delete, or update access rights.
--Monitor job postings across the platform, including the ability to delete inappropriate or expired listings.
--Oversee application flows between users and companies to ensure fair usage and detect suspicious activities.
--Access analytics and reports on user activity, job postings, application trends, and platform performance.
--Manage security features such as CSRF protection and ensure data privacy compliance across the platform.
+- **Admin Dashboard:**
+- Review and approve newly registered companies; only approved companies (AC) can post jobs and access the platform fully.
+- Manage all user and company accounts, with options to deactivate, delete, or update access rights.
+- Monitor job postings across the platform, including the ability to delete inappropriate or expired listings.
+- Oversee application flows between users and companies to ensure fair usage and detect suspicious activities.
+- Access analytics and reports on user activity, job postings, application trends, and platform performance.
+- Manage security features such as CSRF protection and ensure data privacy compliance across the platform.
 
 ## Technology Used
 - **Programming Language:** Python
