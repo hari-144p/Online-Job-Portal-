@@ -1,0 +1,338 @@
+<!doctype html>
+{% load static %}
+<html class="no-js" lang="zxx">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>QuickHire</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" type="image/x-icon" href="{% static 'hb/assets/img/job-portal.ico' %}">
+
+    <!-- CSS here -->
+    <link rel="stylesheet" href="{% static 'hb/assets/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'hb/assets/css/owl.carousel.min.css' %}">
+    <link rel="stylesheet" href="{% static 'hb/assets/css/slicknav.css' %}">
+    <link rel="stylesheet" href="{% static 'hb/assets/css/price_rangs.css' %}">
+    <link rel="stylesheet" href="{% static 'hb/assets/css/animate.min.css' %}">
+    <link rel="stylesheet" href="{% static 'hb/assets/css/magnific-popup.css' %}">
+    <link rel="stylesheet" href="{% static 'hb/assets/css/fontawesome-all.min.css' %}">
+    <link rel="stylesheet" href="{% static 'hb/assets/css/themify-icons.css' %}">
+    <link rel="stylesheet" href="{% static 'hb/assets/css/slick.css' %}">
+    <link rel="stylesheet" href="{% static 'hb/assets/css/nice-select.css' %}">
+    <link rel="stylesheet" href="{% static 'hb/assets/css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'hb/assets/css/responsive.css' %}">
+</head>
+
+<body>
+<style>body {
+    overflow-x: hidden;
+}
+
+.container,
+.footer-area,
+.footer-bottom-area,
+.contact-section {
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
+.row {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.footer-wejed,
+.footer-tittle-bottom,
+.footer-social {
+    max-width: 100%;
+    box-sizing: border-box;
+}
+
+.footer-bg {
+    width: 100%;
+    max-width: 100%;
+}
+
+@media (max-width: 1200px) {
+    .footer-area .col-xl-3,
+    .footer-bottom-area .col-xl-3 {
+        max-width: 100%;
+    }
+}
+</style>
+    <header>
+        <!-- Header Start -->
+       <div class="header-area header-transparrent">
+           <div class="headder-top header-sticky">
+                <div class="container">
+                    <div class="row align-items-center">
+                        <div class="col-lg-3 col-md-2">
+                            <!-- Logo -->
+                            <div class="logo">
+                                <a href="{% url 'index' %}"><img src="{% static 'hb/assets/img/logo/Quick.png' %}" alt=""></a>
+                            </div>
+                        </div>
+                        <div class="col-lg-9 col-md-9">
+                            <div class="menu-wrapper">
+                                <!-- Main-menu -->
+                                <div class="main-menu">
+                                    <nav class="d-none d-lg-block">
+                                        <ul id="navigation">
+                                            <li><a href="{% url 'index' %}">Home</a></li>
+                                            <li><a href="{% url 'about' %}">About</a></li>
+                                            <li><a href="/contact">Contact</a></li>
+                                            <li><a href="/ureg">User Registration</a></li>
+                                            <li><a href="/recreg">Company Registration</a></li>
+                                        </ul>
+                                    </nav>
+                                </div>
+                                <!-- Header-btn -->
+                                <div class="header-btn d-none f-right d-lg-block">
+                                    <a href="/login" class="btn head-btn2">Login</a>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Mobile Menu -->
+
+                    </div>
+                </div>
+           </div>
+       </div>
+        <!-- Header End -->
+    </header>
+    <!-- ================ contact section start ================= -->
+    <section class="contact-section">
+        <div class="container  mb-5">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="card shadow-lg p-5 rounded-4">
+                        <h2 class="mb-4 text-center">Contact Admin</h2>
+
+                        {% if msg %}
+                        <div class="alert alert-success text-center" role="alert">
+                            {{ msg }}
+                        </div>
+                        {% endif %}
+
+                        <form method="POST" class="needs-validation" novalidate>
+                            {% csrf_token %}
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="name" class="form-label">Enter your Name</label>
+                                    <input type="text" name="name" id="name" class="form-control" required>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="email" class="form-label">Enter your Email</label>
+                                    <input type="email" name="email" id="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" class="form-control" required>
+                                </div>
+                            </div>
+
+                            <div class="col-md-4 mb-3">
+                                <label for="mobile_number" class="form-label">Enter your Mobile Number</label>
+                                <input type="text" name="mobile_number"  pattern="[6-9]{1}[0-9]{9}" id="mobile_number" class="form-control" required>
+                            </div>
+
+                            <div class="col-md-11 mb-3">
+                                <label for="message" class="form-label">Enter your Message</label>
+                                <textarea name="message" id="message" rows="5" class="form-control" required></textarea>
+                            </div>
+
+                            <div class="text-center">
+                                <button type="submit" class="btn btn-primary px-4">Send Message</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="text-center mt-4">
+    <div class="row justify-content-center text-center">
+        <!-- Address -->
+        <div class="col-md-4 mb-3">
+            <i class="ti-home mb-2 d-block" style="font-size: 1.5rem;"></i>
+            <h6 class="fw-bold mb-1">QuickHire HQ</h6>
+            <p class="mb-0">45th Building, Career Hub Tower<br>Tech Park, Kochi, Kerala</p>
+        </div>
+        <!-- Phone -->
+        <div class="col-md-4 mb-3">
+            <i class="ti-tablet mb-2 d-block" style="font-size: 1.5rem;"></i>
+            <h6 class="fw-bold mb-1">Admin</h6>
+            <p class="mb-0">+91 8547452856</p>
+        </div>
+        <!-- Email -->
+        <div class="col-md-4 mb-3">
+            <i class="ti-email mb-2 d-block" style="font-size: 1.5rem;"></i>
+            <h6 class="fw-bold mb-1">Email</h6>
+            <h6 class="mb-0"><a href="mailto:admin@quickhire.com">admin@quickhire.com</a></h6>
+        </div>
+    </div>
+</div>
+</section>
+    <!-- ================ contact section end ================= -->
+    <footer>
+    <!-- Footer Start-->
+    <div class="footer-area footer-bg footer-padding">
+        <div class="container">
+            <div class="row d-flex justify-content-between">
+                <!-- About Us -->
+                <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6">
+                    <div class="single-footer-caption mb-50">
+                        <div class="single-footer-caption mb-30">
+                            <div class="footer-tittle">
+                                <h4>About Us</h4>
+                                <div class="footer-pera">
+                                    <p>We create endless opportunities, connecting job seekers with top employers. Empowering careers and businesses, we make hiring simple, efficient, and seamless.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Contact Info -->
+                <div class="col-xl-3 col-lg-3 col-md-4 col-sm-5">
+                    <div class="single-footer-caption mb-50">
+                        <div class="footer-tittle">
+                            <h4>Contact Info</h4>
+                            <ul>
+                                <li>
+                                    <p>
+                                        QuickHire HQ <br>
+                                        45th Building, Career Hub Tower,<br>
+                                        Tech Park, Kochi,<br>Kerala
+                                    </p>
+                                </li>
+                                <li><a href="tel:+919876543210">Phone : +91 9876543210</a></li>
+                                <li><a href="mailto:contact@quickhire.com">Email Us: contact@quickhire.com</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Important Links -->
+                <div class="col-xl-3 col-lg-3 col-md-4 col-sm-5">
+                    <div class="single-footer-caption mb-50">
+                        <div class="footer-tittle">
+                            <h4>Important Links</h4>
+                            <ul>
+                                <li><a href="/index">Home</a></li>
+                                <li><a href="/about">About</a></li>
+                                <li><a href="/contact">Contact</a></li>
+                                <li><a href="/ureg">User Registration</a></li>
+                                <li><a href="/recreg">Company Registration</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <!-- Newsletter -->
+            </div>
+
+            <!-- Footer Stats -->
+            <div class="row footer-wejed justify-content-between">
+                <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6"></div>
+                <div class="col-xl-3 col-lg-3 col-md-4 col-sm-5">
+                    <div class="footer-tittle-bottom">
+                        <span>5000+</span>
+                        <p>Skilled Professionals</p>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-4 col-sm-5">
+                    <div class="footer-tittle-bottom">
+                        <span>450+</span>
+                        <p>Job Seekers</p>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-4 col-sm-5">
+                    <div class="footer-tittle-bottom">
+                        <span>600+</span>
+                        <p>Career Achievers</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer Bottom -->
+    <div class="footer-bottom-area footer-bg">
+        <div class="container">
+            <div class="footer-border">
+                <div class="row d-flex justify-content-between align-items-center">
+                    <div class="col-xl-10 col-lg-10">
+                        <div class="footer-copy-right">
+                            <p>
+                                <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                                Copyright &copy;
+                                <script>document.write(new Date().getFullYear());</script>
+                                All rights reserved
+                                <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-xl-2 col-lg-2">
+                        <div class="footer-social f-right">
+                            <a href="#"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                            <a href="#"><i class="fas fa-globe"></i></a>
+                            <a href="#"><i class="fab fa-behance"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Footer End-->
+</footer>
+
+    <!-- JS here -->
+    <script src="{% static 'hb/assets/js/vendor/modernizr-3.5.0.min.js' %}"></script>
+    <script src="{% static 'hb/assets/js/vendor/jquery-1.12.4.min.js' %}"></script>
+    <script src="{% static 'hb/assets/js/popper.min.js' %}"></script>
+    <script src="{% static 'hb/assets/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'hb/assets/js/jquery.slicknav.min.js' %}"></script>
+    <script src="{% static 'hb/assets/js/owl.carousel.min.js' %}"></script>
+    <script src="{% static 'hb/assets/js/slick.min.js' %}"></script>
+    <script src="{% static 'hb/assets/js/price_rangs.js' %}"></script>
+    <script src="{% static 'hb/assets/js/wow.min.js' %}"></script>
+    <script src="{% static 'hb/assets/js/animated.headline.js' %}"></script>
+    <script src="{% static 'hb/assets/js/jquery.scrollUp.min.js' %}"></script>
+    <script src="{% static 'hb/assets/js/jquery.nice-select.min.js' %}"></script>
+    <script src="{% static 'hb/assets/js/jquery.sticky.js' %}"></script>
+    <script src="{% static 'hb/assets/js/contact.js' %}"></script>
+    <script src="{% static 'hb/assets/js/jquery.form.js' %}"></script>
+    <script src="{% static 'hb/assets/js/mail-script.js' %}"></script>
+    <script src="{% static 'hb/assets/js/jquery.ajaxchimp.min.js' %}"></script>
+    <script src="{% static 'hb/assets/js/plugins.js' %}"></script>
+    <script src="{% static 'hb/assets/js/main.js' %}"></script>
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        document.querySelector('form').addEventListener('submit', function(e) {
+            let isValid = true;
+            const name = document.getElementById('name').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const mobile = document.getElementById('mobile_number').value.trim();
+            const message = document.getElementById('message').value.trim();
+
+            // Validate each field
+            if (name.length === 0) {
+                isValid = false;
+                alert("Please enter your name.");
+            } else if (email.length === 0 || !/^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/.test(email)) {
+                isValid = false;
+                alert("Please enter a valid email address.");
+            } else if (mobile.length === 0 || !/^[6-9][0-9]{9}$/.test(mobile)) {
+                isValid = false;
+                alert("Please enter a valid 10-digit mobile number starting with 6, 7, 8, or 9.");
+            } else if (message.length === 0) {
+                isValid = false;
+                alert("Please enter a valid message.");
+            }
+
+            if (!isValid) {
+                e.preventDefault(); // Stop form submission if validation fails
+            }
+        });
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,67 @@
+<!doctype html>
+{% load static %}
+<html class="no-js" lang="zxx">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+         <title>QuickHire</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="manifest" href="site.webmanifest">
+		<link rel="shortcut icon" type="image/x-icon" href="{% static 'hb/assets/img/job-portal.ico' %}">
+
+		<!-- CSS here -->
+            <link rel="stylesheet" href="{% static 'hb/assets/css/bootstrap.min.css' %}">
+            <link rel="stylesheet" href="{% static 'hb/assets/css/owl.carousel.min.css' %}">
+            <link rel="stylesheet" href="{% static 'hb/assets/css/flaticon.css' %}">
+            <link rel="stylesheet" href="{% static 'hb/assets/css/price_rangs.css' %}">
+            <link rel="stylesheet" href="{% static 'hb/assets/css/slicknav.css' %}">
+            <link rel="stylesheet" href="{% static 'hb/assets/css/animate.min.css' %}">
+            <link rel="stylesheet" href="{% static 'hb/assets/css/magnific-popup.css' %}">
+            <link rel="stylesheet" href="{% static 'hb/assets/css/fontawesome-all.min.css' %}">
+            <link rel="stylesheet" href="{% static 'hb/assets/css/themify-icons.css' %}">
+            <link rel="stylesheet" href="{% static 'hb/assets/css/slick.css' %}">
+            <link rel="stylesheet" href="{% static 'hb/assets/css/nice-select.css' %}">
+            <link rel="stylesheet" href="{% static 'hb/assets/css/style.css' %}">
+
+   </head>
+<body>
+
+
+    <div class="single-slider slider-height d-flex align-items-center" data-background="{% static 'hb/assets/img/hero/h1_hero.jpg' %}">
+      <div class="container mt-5 mb-5 ">
+        <div class="card shadow-lg p-4 rounded-4 align-items-center">
+          <h2 class="mb-4 text-center">Change Password</h2>
+
+          {% if msg %}
+            <div class="alert alert-success text-center" role="alert">
+            {{ msg }}
+          </div>
+          {% endif %}
+
+              <form method="POST">
+    {% csrf_token %}
+
+    <label for="old">Old Password:</label><br>
+    <input type="password" name="old" required class="form-control"><br><br>
+
+    <label for="n1">New Password:</label><br>
+    <input type="password" name="n1" required class="form-control"><br><br>
+
+    <label for="n2">Confirm New Password:</label><br>
+    <input type="password" name="n2" required class="form-control"><br><br>
+
+    <button type="submit" class="btn px-5 ">Change Password</button>
+                </form>
+    <div class="text-center">
+        <br>
+        <a href="/login" class="btn btn-secondary">Login</a>
+</div>
+
+
+    </div>
+</div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,305 @@
+{% load static %}
+<!doctype html>
+<html class="no-js" lang="zxx">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>View Jobs - QuickHire</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" type="image/x-icon" href="{% static 'hb/assets/img/job-portal.ico' %}">
+
+    <!-- CSS here -->
+    <link rel="stylesheet" href="{% static 'hb/assets/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'hb/assets/css/owl.carousel.min.css' %}">
+    <link rel="stylesheet" href="{% static 'hb/assets/css/flaticon.css' %}">
+    <link rel="stylesheet" href="{% static 'hb/assets/css/price_rangs.css' %}">
+    <link rel="stylesheet" href="{% static 'hb/assets/css/slicknav.css' %}">
+    <link rel="stylesheet" href="{% static 'hb/assets/css/animate.min.css' %}">
+    <link rel="stylesheet" href="{% static 'hb/assets/css/magnific-popup.css' %}">
+    <link rel="stylesheet" href="{% static 'hb/assets/css/fontawesome-all.min.css' %}">
+    <link rel="stylesheet" href="{% static 'hb/assets/css/themify-icons.css' %}">
+    <link rel="stylesheet" href="{% static 'hb/assets/css/slick.css' %}">
+    <link rel="stylesheet" href="{% static 'hb/assets/css/nice-select.css' %}">
+    <link rel="stylesheet" href="{% static 'hb/assets/css/style.css' %}">
+
+    <!-- Custom CSS -->
+    <style>
+        .single-job-items { transition: all 0.3s ease; }
+        .single-job-items:hover { box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
+        .disabled-btn { background-color: #6c757d; cursor: not-allowed; }
+        .alert { margin-bottom: 20px; }
+    </style>
+</head>
+<body>
+    <!-- Preloader Start -->
+    <div id="preloader-active">
+        <div class="preloader d-flex align-items-center justify-content-center">
+            <div class="preloader-inner position-relative">
+                <div class="preloader-circle"></div>
+                <div class="preloader-img pere-text">
+                    <img src="{% static 'hb/assets/img/logo/Quick.png' %}" alt="">
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Preloader End -->
+
+    <header>
+        <!-- Header Start -->
+        <div class="header-area header-transparrent">
+            <div class="headder-top header-sticky">
+                <div class="container">
+                    <div class="row align-items-center">
+                        <div class="col-lg-3 col-md-2">
+                            <!-- Logo -->
+                            <div class="logo">
+                                <a href="/userpage"><img src="{% static 'hb/assets/img/logo/Quick.png' %}" alt=""></a>
+                            </div>
+                        </div>
+                        <div class="col-lg-9 col-md-9">
+                            <div class="menu-wrapper">
+                                <!-- Main-menu -->
+                                <div class="main-menu">
+                                    <nav class="d-none d-lg-block">
+                                        <ul id="navigation">
+                                            <li><a href="/userpage">Home</a></li>
+                                            <li><a href="/jobs">Apply for a Job</a></li>
+                                            <li><a href="/user_applications">View Application Status</a></li>
+                                            <li><a href="{% url 'approved_companies_list' %}">View Companies</a></li>
+                                            <li><a href="/user_profile">Dashboard</a></li>
+                                        </ul>
+                                    </nav>
+                                </div>
+                                <!-- Header-btn -->
+                            </div>
+                        </div>
+                        <!-- Mobile Menu -->
+                        <div class="col-12">
+                            <div class="mobile_menu d-block d-lg-none"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Header End -->
+    </header>
+
+    <main>
+        <!-- Job Listings Start -->
+        <section class="featured-job-area feature-padding">
+            <div class="container">
+                <!-- Section Tittle -->
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="section-tittle text-center">
+                            <span>Available Opportunities</span>
+                            <h2>Job Listings</h2>
+                        </div>
+                    </div>
+                </div>
+                <!-- Message Display -->
+                {% if msg %}
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="alert alert-info">{{ msg }}</div>
+                        </div>
+                    </div>
+                {% endif %}
+                <div class="row justify-content-center">
+                    <div class="col-xl-10">
+                        {% for job in jobs %}
+                            <!-- single-job-content -->
+                            <div class="single-job-items mb-30">
+    <div class="job-items d-flex border rounded shadow-sm p-3 mb-4 bg-white">
+    <!-- Company Logo -->
+    <div class="company-img me-4">
+        <a href="#">
+            <img src="{% if job.company.company_logo %}{{ job.company.company_logo.url }}{% else %}{% static 'hb/assets/img/icon/job-list1.png' %}{% endif %}"
+                 alt="{{ job.company.company_name }} Logo"
+                 class="img-fluid rounded" style="max-width: 100px;">
+        </a>
+    </div>
+
+    <!-- Job Title and Info -->
+    <div class="job-tittle flex-grow-1">
+        <a href="#" data-bs-toggle="collapse" data-bs-target="#jobDetails{{ job.id }}" aria-expanded="false" aria-controls="jobDetails{{ job.id }}">
+            <h4 class="fw-bold mb-3 text-primary">{{ job.title }}</h4>
+        </a>
+
+        <ul class="list-unstyled">
+            <li><strong>🏢 Company:</strong> {{ job.company.company_name }}</li>
+            <br>
+            <li><strong>📍 Location:</strong> {{ job.location }}</li>
+            <li><strong>📝 Description:</strong> {{ job.description }}</li>
+            <li><strong>📌 Responsibilities:</strong> {{ job.responsibilities }}</li>
+            <br>
+            <li><strong>👥 Vacancies:</strong> {{ job.number_of_vacancies }}</li>
+            <li><strong>💰 Salary:</strong> {{ job.salary_range }}</li>
+            <li><strong>🧑‍💼 Experience:</strong> {{ job.work_experience }} Years</li>
+            <li><strong>🎓 Qualification:</strong> {{ job.qualification_required }}</li>
+            <li><strong>🛠 Skills Required:</strong> {{ job.skills_required }}</li>
+            <li><strong>📅 Last date to apply: </strong>{{ job.last_date_to_apply }}</li>
+        </ul>
+    </div>
+</div>
+
+    <div class="items-link f-right">
+        {% if user and job.id in applied_jobs %}
+            <button class="btn disabled-btn" disabled>Applied</button>
+        {% elif user %}
+            <a href="{% url 'apply_for_job' job.id %}" class=" btn-primary" >Apply Now</a>
+        {% else %}
+            <a href="/login" class="btn">Login to Apply</a>
+        {% endif %}
+    </div>
+</div>
+                        {% empty %}
+                            <div class="col-12 text-center">
+                                <p>No jobs available at the moment.</p>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Job Listings End -->
+    </main>
+
+    <footer>
+    <!-- Footer Start-->
+    <div class="footer-area footer-bg footer-padding">
+        <div class="container">
+            <div class="row d-flex justify-content-between">
+                <!-- About Us -->
+                <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6">
+                    <div class="single-footer-caption mb-50">
+                        <div class="single-footer-caption mb-30">
+                            <div class="footer-tittle">
+                                <h4>About Us</h4>
+                                <div class="footer-pera">
+                                    <p>We create endless opportunities, connecting job seekers with top employers. Empowering careers and businesses, we make hiring simple, efficient, and seamless.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Contact Info -->
+                <div class="col-xl-3 col-lg-3 col-md-4 col-sm-5">
+                    <div class="single-footer-caption mb-50">
+                        <div class="footer-tittle">
+                            <h4>Contact Info</h4>
+                            <ul>
+                                <li>
+                                    <p>
+                                        QuickHire HQ <br>
+                                        45th Building, Career Hub Tower,<br>
+                                        Tech Park, Kochi,<br>Kerala
+                                    </p>
+                                </li>
+                                <li><a href="tel:+919876543210">Phone : +91 9876543210</a></li>
+                                <li><a href="mailto:contact@quickhire.com">Email Us: contact@quickhire.com</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Important Links -->
+                <div class="col-xl-3 col-lg-3 col-md-4 col-sm-5">
+                    <div class="single-footer-caption mb-50">
+                        <div class="footer-tittle">
+                            <h4>Important Links</h4>
+                            <ul>
+                                <li><a href="/userpage">Home</a></li>
+                                <li><a href="/jobs">Apply for Job</a></li>
+                                <li><a href="/user_applications">View Application Status</a></li>
+                                <li><a href="{% url 'approved_companies_list' %}">Recruiters</a></li>
+                                <li><a href="/user_profile">Dashboard</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <!-- Newsletter -->
+            </div>
+
+            <!-- Footer Stats -->
+            <div class="row footer-wejed justify-content-between">
+                <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6"></div>
+                <div class="col-xl-3 col-lg-3 col-md-4 col-sm-5">
+                    <div class="footer-tittle-bottom">
+                        <span>5000+</span>
+                        <p>Skilled Professionals</p>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-4 col-sm-5">
+                    <div class="footer-tittle-bottom">
+                        <span>450+</span>
+                        <p>Job Seekers</p>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-4 col-sm-5">
+                    <div class="footer-tittle-bottom">
+                        <span>600+</span>
+                        <p>Career Achievers</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer Bottom -->
+    <div class="footer-bottom-area footer-bg">
+        <div class="container">
+            <div class="footer-border">
+                <div class="row d-flex justify-content-between align-items-center">
+                    <div class="col-xl-10 col-lg-10">
+                        <div class="footer-copy-right">
+                            <p>
+                                <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                                Copyright &copy;
+                                <script>document.write(new Date().getFullYear());</script>
+                                All rights reserved
+                                <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-xl-2 col-lg-2">
+                        <div class="footer-social f-right">
+                            <a href="#"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                            <a href="#"><i class="fas fa-globe"></i></a>
+                            <a href="#"><i class="fab fa-behance"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Footer End-->
+</footer>
+
+    <!-- JS here -->
+    <script src="{% static 'hb/assets/js/vendor/modernizr-3.5.0.min.js' %}"></script>
+    <script src="{% static 'hb/assets/js/vendor/jquery-1.12.4.min.js' %}"></script>
+    <script src="{% static 'hb/assets/js/popper.min.js' %}"></script>
+    <script src="{% static 'hb/assets/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'hb/assets/js/jquery.slicknav.min.js' %}"></script>
+    <script src="{% static 'hb/assets/js/owl.carousel.min.js' %}"></script>
+    <script src="{% static 'hb/assets/js/slick.min.js' %}"></script>
+    <script src="{% static 'hb/assets/js/price_rangs.js' %}"></script>
+    <script src="{% static 'hb/assets/js/wow.min.js' %}"></script>
+    <script src="{% static 'hb/assets/js/animated.headline.js' %}"></script>
+    <script src="{% static 'hb/assets/js/jquery.magnific-popup.js' %}"></script>
+    <script src="{% static 'hb/assets/js/jquery.scrollUp.min.js' %}"></script>
+    <script src="{% static 'hb/assets/js/jquery.nice-select.min.js' %}"></script>
+    <script src="{% static 'hb/assets/js/jquery.sticky.js' %}"></script>
+    <script src="{% static 'hb/assets/js/contact.js' %}"></script>
+    <script src="{% static 'hb/assets/js/jquery.form.js' %}"></script>
+    <script src="{% static 'hb/assets/js/jquery.validate.min.js' %}"></script>
+    <script src="{% static 'hb/assets/js/mail-script.js' %}"></script>
+    <script src="{% static 'hb/assets/js/jquery.ajaxchimp.min.js' %}"></script>
+    <script src="{% static 'hb/assets/js/plugins.js' %}"></script>
+    <script src="{% static 'hb/assets/js/main.js' %}"></script>
+</body>
+</html>

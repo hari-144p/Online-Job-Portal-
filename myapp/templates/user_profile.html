@@ -1,0 +1,112 @@
+<!doctype html>
+{% load static %}
+<html class="no-js" lang="zxx">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+         <title>QuickHire</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="manifest" href="site.webmanifest">
+		<link rel="shortcut icon" type="image/x-icon" href="{% static 'hb/assets/img/job-portal.ico' %}">
+
+		<!-- CSS here -->
+            <link rel="stylesheet" href="{% static 'hb/assets/css/bootstrap.min.css' %}">
+            <link rel="stylesheet" href="{% static 'hb/assets/css/owl.carousel.min.css' %}">
+            <link rel="stylesheet" href="{% static 'hb/assets/css/flaticon.css' %}">
+            <link rel="stylesheet" href="{% static 'hb/assets/css/price_rangs.css' %}">
+            <link rel="stylesheet" href="{% static 'hb/assets/css/slicknav.css' %}">
+            <link rel="stylesheet" href="{% static 'hb/assets/css/animate.min.css' %}">
+            <link rel="stylesheet" href="{% static 'hb/assets/css/magnific-popup.css' %}">
+            <link rel="stylesheet" href="{% static 'hb/assets/css/fontawesome-all.min.css' %}">
+            <link rel="stylesheet" href="{% static 'hb/assets/css/themify-icons.css' %}">
+            <link rel="stylesheet" href="{% static 'hb/assets/css/slick.css' %}">
+            <link rel="stylesheet" href="{% static 'hb/assets/css/nice-select.css' %}">
+            <link rel="stylesheet" href="{% static 'hb/assets/css/style.css' %}">
+   </head>
+<body>
+
+{% block content %}
+<div class="single-slider slider-height d-flex align-items-center" data-background="{% static 'hb/assets/img/hero/h1_hero.jpg' %}">
+<div class="container mt-5 mb-5">
+    <div class="card shadow-lg p-4 rounded-4">
+        <h2 class="mb-4 text-center">User Profile</h2>
+
+        {% if msg %}
+        <div class="alert alert-success text-center" role="alert">
+            {{ msg }}
+        </div>
+        {% endif %}
+
+        <form method="POST" enctype="multipart/form-data" class="needs-validation" novalidate>
+            {% csrf_token %}
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label for="fname" class="form-label">First Name</label>
+                    <input type="text" name="fname" value="{{ user.fname }}" class="form-control" required>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label for="lname" class="form-label">Last Name</label>
+                    <input type="text" name="lname" value="{{ user.lname }}" class="form-control" required>
+                </div>
+
+            </div>
+
+            <div class="mb-3">
+                <label for="addrs" class="form-label">Address</label>
+                <input type="text" name="addrs" value="{{ user.addrs }}" class="form-control" required>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label for="email" class="form-label">Email (Not Editable)</label>
+                    <input type="email" name="email" value="{{ user.email }}" class="form-control" required readonly>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label for="phno" class="form-label">Phone (Not Editable)</label>
+                    <input type="text" name="phno" value="{{ user.phno }}" class="form-control" required readonly>
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label for="qualification" class="form-label">Highest Qualification</label>
+                <select class="form-control" name="qualification" required >
+                 <option value="" disabled {% if not user.highest_qualification %}selected{% endif %}>Select Highest Qualification</option>
+                 <option value="High School" {% if user.highest_qualification == "High School" %}selected{% endif %}>High School</option>
+                <option value="Diploma" {% if user.highest_qualification == "Diploma" %}selected{% endif %}>Diploma</option>
+                <option value="Bachelor's" {% if user.highest_qualification == "Bachelor's" %}selected{% endif %}>Bachelor's Degree</option>
+                <option value="Master's" {% if user.highest_qualification == "Master's" %}selected{% endif %}>Master's Degree</option>
+                <option value="PhD" {% if user.highest_qualification == "PhD" %}selected{% endif %}>PhD</option>
+                </select>
+            </div>
+
+            <div class="mb-3">
+                <label for="skills" class="form-label">Skills</label>
+                <textarea name="skills" rows="3" class="form-control" required>{{ user.skills }}</textarea>
+            </div>
+
+
+            <div class="mb-3">
+                <label class="form-label">Resume</label><br>
+                {% if user.resume %}
+                    <a href="{{ user.resume.url }}" target="_blank" class="btn btn-sm btn-outline-info mb-2">View Current Resume</a><br>
+                {% endif %}
+                <input type="file" name="resume" class="form-control">
+            </div>
+
+            <div class="text-center">
+                <button type="submit" class="btn btn-primary px-4">Update Profile</button>
+            </div>
+<br>
+        </form>
+        <div class="text-center">
+                <a href="/userpage" class=" btn btn-primary px-4 head-btn2">GO BACK</a>
+            </div>
+    </div>
+</div>
+</div>
+{% endblock %}
+
+
+</body>
+</html>

@@ -1,0 +1,96 @@
+<!doctype html>
+{% load static %}
+<html class="no-js" lang="zxx">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>QuickHire</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="manifest" href="site.webmanifest">
+    <link rel="shortcut icon" type="image/x-icon" href="{% static 'hb/assets/img/job-portal.ico' %}">
+
+    <!-- CSS here -->
+    <link rel="stylesheet" href="{% static 'hb/assets/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'hb/assets/css/owl.carousel.min.css' %}">
+    <link rel="stylesheet" href="{% static 'hb/assets/css/flaticon.css' %}">
+    <link rel="stylesheet" href="{% static 'hb/assets/css/price_rangs.css' %}">
+    <link rel="stylesheet" href="{% static 'hb/assets/css/slicknav.css' %}">
+    <link rel="stylesheet" href="{% static 'hb/assets/css/animate.min.css' %}">
+    <link rel="stylesheet" href="{% static 'hb/assets/css/magnific-popup.css' %}">
+    <link rel="stylesheet" href="{% static 'hb/assets/css/fontawesome-all.min.css' %}">
+    <link rel="stylesheet" href="{% static 'hb/assets/css/themify-icons.css' %}">
+    <link rel="stylesheet" href="{% static 'hb/assets/css/slick.css' %}">
+    <link rel="stylesheet" href="{% static 'hb/assets/css/nice-select.css' %}">
+    <link rel="stylesheet" href="{% static 'hb/assets/css/style.css' %}">
+</head>
+<body>
+
+{% block content %}
+<div class="single-slider slider-height d-flex align-items-center" data-background="{% static 'hb/assets/img/hero/h1_hero.jpg' %}">
+    <div class="container mt-5 mb-5">
+        <div class="card shadow-lg p-4 rounded-4">
+            <h2 class="mb-4 text-center">Company Profile</h2>
+
+            {% if msg %}
+            <div class="alert alert-success text-center" role="alert">
+                {{ msg }}
+            </div>
+            {% endif %}
+
+            <form method="POST" enctype="multipart/form-data" class="needs-validation" novalidate>
+                {% csrf_token %}
+                <div class="mb-3">
+                    <label class="form-label">Company Name</label>
+                    <input type="text" name="company_name" value="{{ company.company_name }}" class="form-control" required readonly>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Company Email</label>
+                    <input type="email" name="company_email" value="{{ company.company_email }}" class="form-control" required readonly>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Address</label>
+                    <input type="text" name="address" value="{{ company.address }}" class="form-control" required>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Contact Person</label>
+                    <input type="text" name="contact_person" value="{{ company.contact_person }}" class="form-control" required>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Phone Number</label>
+                    <input type="text" name="phone_number" value="{{ company.phone_number }}" class="form-control" required >
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Website</label>
+                    <input type="url" name="website" value="{{ company.website }}" class="form-control">
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Company Logo</label><br>
+                    {% if company.company_logo %}
+                        <img src="{{ company.company_logo.url }}" height="80" class="mb-2"><br>
+                    {% endif %}
+                    <input type="file" name="company_logo" class="form-control">
+                </div>
+
+                <div class="text-center">
+                    <button type="submit" class="btn  px-4">Update Profile</button>
+                </div>
+                <br>
+            </form>
+
+            <div class="text-center">
+                <a href="/companypage" class="btn btn-primary px-4 head-btn2">GO BACK</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+</body>
+</html>

@@ -1,0 +1,349 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>All Registered Users - Admin Dashboard</title>
+    <meta content="width=device-width, initial-scale=1.0, shrink-to-fit=no" name="viewport" />
+    <link rel="icon" href="{% static 'admin/assets/img/kaiadmin/favicon.ico' %}" type="image/x-icon" />
+
+    <!-- Fonts and icons -->
+    <script src="{% static 'admin/assets/js/plugin/webfont/webfont.min.js' %}"></script>
+    <script>
+      WebFont.load({
+        google: { families: ["Public Sans:300,400,500,600,700"] },
+        custom: {
+          families: [
+            "Font Awesome 5 Solid",
+            "Font Awesome 5 Regular",
+            "Font Awesome 5 Brands",
+            "simple-line-icons",
+          ],
+          urls: ["{% static 'admin/assets/css/fonts.min.css' %}"],
+        },
+        active: function () {
+          sessionStorage.fonts = true;
+        },
+      });
+    </script>
+
+    <!-- CSS Files -->
+    <link rel="stylesheet" href="{% static 'admin/assets/css/bootstrap.min.css' %}" />
+    <link rel="stylesheet" href="{% static 'admin/assets/css/plugins.min.css' %}" />
+    <link rel="stylesheet" href="{% static 'admin/assets/css/kaiadmin.min.css' %}" />
+    <link rel="stylesheet" href="{% static 'admin/assets/css/demo.css' %}" />
+
+    <!-- Custom CSS for Table Spacing -->
+    <style>
+      .table th, .table td {
+        padding: 15px 20px; /* Increased padding for better spacing */
+        vertical-align: middle;
+        min-width: 120px; /* Set minimum width for all cells */
+      }
+      .table .address-column, .table .skills-column {
+        max-width: 250px; /* Increased max-width for address and skills */
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+      .table .address-column:hover, .table .skills-column:hover {
+        overflow: visible;
+        white-space: normal;
+        cursor: pointer;
+      }
+      .table .actions-column {
+        width: 150px; /* Fixed width for actions */
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrapper">
+      <!-- Sidebar -->
+      <div class="sidebar" data-background-color="dark">
+        <div class="sidebar-logo">
+          <div class="logo-header" data-background-color="dark">
+            <a href="/adminhome" class="logo">
+              <img
+                src="{% static 'admin/assets/img/kaiadmin/logo_light.svg' %}"
+                alt="navbar brand"
+                class="navbar-brand"
+                height="20"
+              />
+            </a>
+            <div class="nav-toggle">
+              <button class="btn btn-toggle toggle-sidebar">
+                <i class="gg-menu-right"></i>
+              </button>
+              <button class="btn btn-toggle sidenav-toggler">
+                <i class="gg-menu-left"></i>
+              </button>
+            </div>
+            <button class="topbar-toggler more">
+              <i class="gg-more-vertical-alt"></i>
+            </button>
+          </div>
+        </div>
+        <div class="sidebar-wrapper scrollbar scrollbar-inner">
+          <div class="sidebar-content">
+            <ul class="nav nav-secondary">
+              <li class="nav-item">
+                <a href="/adminhome">
+                  <i class="fas fa-home"></i>
+                  <p>Admin Dashboard</p>
+                </a>
+              </li>
+              <li class="nav-section">
+                <span class="sidebar-mini-icon">
+                  <i class="fa fa-ellipsis-h"></i>
+                </span>
+              </li>
+              <li class="nav-item active">
+                <a data-bs-toggle="collapse" href="#base">
+                  <i class="fa fa-user"></i>
+                  <p>User Management</p>
+                  <span class="caret"></span>
+                </a>
+                <div class="collapse show" id="base">
+                  <ul class="nav nav-collapse">
+                    <li >
+                      <a href="{% url 'all_users' %}">
+                        <span class="sub-item">Block/Unblock Users</span>
+                      </a>
+                    </li>
+                    <li class="active">
+                      <a href="/users_delete">
+                        <span class="sub-item active">Delete Users</span>
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+              </li>
+              <li class="nav-item">
+                <a data-bs-toggle="collapse" href="#tables">
+                  <i class="fa fa-building"></i>
+                  <p>Company Management</p>
+                  <span class="caret"></span>
+                </a>
+                <div class="collapse" id="tables">
+                  <ul class="nav nav-collapse">
+                    <li>
+                      <a href="{% url 'all_companies' %}">
+                        <span class="sub-item">View Registered Companies</span>
+                      </a>
+                    </li>
+                    <li>
+                      <a href="{% url 'pending_companies' %}">
+                        <span class="sub-item">Approve / Reject Company Requests</span>
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+              </li>
+              <li class="nav-item">
+                <a  href="/admin_job_listings">
+                  <i class="fa fa-folder"></i>
+                  <p>View All Job Listings</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                 <a href="{% url 'admin_view_all_applications' %}">
+                  <i class="fa fa-users" style="padding-left:5px;"></i>
+                  <p>View All Job Applications</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{% url 'admin_queries' %}">
+                  <i class="fa fa-comments"></i>
+                  <p>Manage Contact Queries</p>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <!-- End Sidebar -->
+
+      <div class="main-panel">
+        <div class="main-header">
+          <div class="main-header-logo">
+            <div class="logo-header" data-background-color="dark">
+              <a href="/adminhome" class="logo">
+                <img
+                  src="{% static 'admin/assets/img/kaiadmin/logo_light.svg' %}"
+                  alt="navbar brand"
+                  class="navbar-brand"
+                  height="20"
+                />
+              </a>
+              <div class="nav-toggle">
+                <button class="btn btn-toggle toggle-sidebar">
+                  <i class="gg-menu-right"></i>
+              </button>
+                <button class="btn btn-toggle sidenav-toggler">
+                  <i class="gg-menu-left"></i>
+                </button>
+              </div>
+              <button class="topbar-toggler more">
+                <i class="gg-more-vertical-alt"></i>
+              </button>
+            </div>
+          </div>
+          <nav class="navbar navbar-header navbar-header-transparent navbar-expand-lg border-bottom">
+            <div class="container-fluid">
+              <nav class="navbar navbar-header-left navbar-expand-lg navbar-form nav-search p-0 d-none d-lg-flex"></nav>
+              <ul class="navbar-nav topbar-nav ms-md-auto align-items-center">
+                <li class="nav-item topbar-icon dropdown hidden-caret d-flex d-lg-none">
+                  <a
+                    class="nav-link dropdown-toggle"
+                    data-bs-toggle="dropdown"
+                    href="#"
+                    role="button"
+                    aria-expanded="false"
+                    aria-haspopup="true"
+                  >
+                    <i class="fa fa-search"></i>
+                  </a>
+                  <ul class="dropdown-menu dropdown-search animated fadeIn">
+                    <form class="navbar-left navbar-form nav-search">
+                      <div class="input-group">
+                        <input type="text" placeholder="Search ..." class="form-control" />
+                      </div>
+                    </form>
+                  </ul>
+                </li>
+                <li class="nav-item topbar-user dropdown hidden-caret">
+                  <a
+                    class="dropdown-toggle profile-pic"
+                    data-bs-toggle="dropdown"
+                    href="#"
+                    aria-expanded="false"
+                  >
+                    <div class="avatar-sm">
+                      <img
+                        src="{% static 'admin/assets/img/profile.png' %}"
+                        alt="..."
+                        class="avatar-img rounded-circle"
+                      />
+                    </div>
+                    <span class="profile-username">
+                      <span class="fw-bold">Admin</span>
+                    </span>
+                  </a>
+                  <ul class="dropdown-menu dropdown-user animated fadeIn">
+                    <div class="dropdown-user-scroll scrollbar-outer">
+                      <li>
+
+                        <a class="dropdown-item" href="/logout">Logout</a>
+                      </li>
+                    </div>
+                  </ul>
+                </li>
+              </ul>
+            </div>
+          </nav>
+        </div>
+
+        <div class="container">
+          <div class="page-inner">
+            <div class="d-flex align-items-left align-items-md-center flex-column flex-md-row pt-2 pb-4">
+              <div>
+                <h3 class="fw-bold mb-3"> Delete Users</h3>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <div class="card card-round">
+                  <div class="card-body">
+                    <div class="table-responsive">
+                      <table class="table table-bordered table-hover">
+                        <thead>
+                          <tr>
+                            <th>Full Name</th>
+                            <th>Email</th>
+                            <th>Username</th>
+                            <th>Phone</th>
+                            <th class="address-column">Address</th>
+                            <th>Qualification</th>
+                            <th class="skills-column">Skills</th>
+                            <th class="actions-column">Actions</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          {% for user in users %}
+                          <tr>
+                            <td>{{ user.fname }} {{ user.lname }}</td>
+                            <td>{{ user.email }}</td>
+                            <td>{{ user.uname }}</td>
+                            <td>{{ user.phno }}</td>
+                            <td class="address-column" title="{{ user.addrs }}">{{ user.addrs }}</td>
+                            <td>{{ user.highest_qualification }}</td>
+                            <td class="skills-column" title="{{ user.skills }}">{{ user.skills }}</td>
+                            <td class="actions-column">
+                              <div>
+                                <a href="{% url 'delete_user' user.id %}" class="btn btn-sm btn-danger"
+                                   onclick="return confirm('Are you sure you want to delete this user?');">Delete</a>
+                              </div>
+                            </td>
+                          </tr>
+                          {% empty %}
+                          <tr>
+                            <td colspan="8">No users registered yet.</td>
+                          </tr>
+                          {% endfor %}
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Core JS Files -->
+    <script src="{% static 'admin/assets/js/core/jquery-3.7.1.min.js' %}"></script>
+    <script src="{% static 'admin/assets/js/core/popper.min.js' %}"></script>
+    <script src="{% static 'admin/assets/js/core/bootstrap.min.js' %}"></script>
+
+    <!-- jQuery Scrollbar -->
+    <script src="{% static 'admin/assets/js/plugin/jquery-scrollbar/jquery.scrollbar.min.js' %}"></script>
+
+    <!-- Chart JS -->
+    <script src="{% static 'admin/assets/js/plugin/chart.js/chart.min.js' %}"></script>
+
+    <!-- jQuery Sparkline -->
+    <script src="{% static 'admin/assets/js/plugin/jquery.sparkline/jquery.sparkline.min.js' %}"></script>
+
+    <!-- Chart Circle -->
+    <script src="{% static 'admin/assets/js/plugin/chart-circle/circles.min.js' %}"></script>
+
+    <!-- Datatables -->
+    <script src="{% static 'admin/assets/js/plugin/datatables/datatables.min.js' %}"></script>
+
+    <!-- Bootstrap Notify -->
+    <script src="{% static 'admin/assets/js/plugin/bootstrap-notify/bootstrap-notify.min.js' %}"></script>
+
+    <!-- jQuery Vector Maps -->
+    <script src="{% static 'admin/assets/js/plugin/jsvectormap/jsvectormap.min.js' %}"></script>
+    <script src="{% static 'admin/assets/js/plugin/jsvectormap/world.js' %}"></script>
+
+    <!-- Kaiadmin JS -->
+    <script src="{% static 'admin/assets/js/kaiadmin.min.js' %}"></script>
+
+    <!-- Initialize DataTables -->
+    <script>
+      $(document).ready(function() {
+        $('table').DataTable({
+          "pageLength": 10,
+          "responsive": true,
+          "columnDefs": [
+            { "orderable": false, "targets": [7] } /* Disable sorting for Actions column */
+          ]
+        });
+      });
+    </script>
+  </body>
+</html>

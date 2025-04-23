@@ -1,0 +1,104 @@
+<!doctype html>
+{% load static %}
+<html lang="en">
+  <head>
+    <title>User Registration</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <!-- Updated static file references -->
+    <link rel="stylesheet" href="{% static 'login/css/style.css' %}">
+
+  </head>
+  <body class="img " style="background-image: url({% static 'login/images/bg.jpg' %});">
+    <section class="ftco-section">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-md-6 text-center mb-5">
+            <h2 class="heading-section" style="padding-top: 100px;"><b>User Registration</b></h2>
+          </div>
+        </div>
+        <div class="row justify-content-center">
+          <div class="col-md-6 col-lg-4">
+            <div class="login-wrap p-0">
+              <form action="#" class="signin-form" method="POST" enctype="multipart/form-data">
+
+                 {% csrf_token %}
+
+                <div class="form-group">
+                  <input type="text" class="form-control" name="first-name" id="first-name" placeholder="First Name" required>
+                </div>
+
+                 <div class="form-group">
+                  <input type="text" class="form-control" name="last-name" id="last-name" placeholder="Last Name" required>
+                </div>
+
+                <div class="form-group">
+                  <input type="text" class="form-control" name="your-email" id="your-email" placeholder="Enter Email" required pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$">
+                </div>
+
+                <div class="form-group">
+                  <input type="text" class="form-control" name="phno" id="phno" placeholder="Enter Phone Number" pattern="^[6-9]\d{9}$" required>
+                </div>
+
+                <div class="form-group">
+                  <input type="text" class="form-control" name="address" id="address" placeholder="Enter your Address" required>
+                </div>
+
+                <div class="form-group">
+                  <input type="text" class="form-control" name="uname" id="uname" placeholder="Enter Username"  required>
+                </div>
+
+                 <div class="form-group">
+                  <input type="password" class="form-control" name="password" id="password" placeholder="Enter Password"  required>
+                </div>
+                <div class="form-group">
+                  <select class="form-control" name="qualification" required style="background-color:#4E4E4F; color: white;">
+                    <option value="" disabled selected>Select Highest Qualification</option>
+                    <option value="High School">High School</option>
+                    <option value="Diploma">Diploma</option>
+                    <option value="Bachelor's">Bachelor's Degree</option>
+                    <option value="Master's">Master's Degree</option>
+                    <option value="PhD">PhD</option>
+                  </select>
+                </div>
+
+                <div class="form-group">
+                  <label for="skills"><b>Enter your Skills:</b></label>
+                   <input type="text" class="form-control" required name="skills" placeholder="e.g., C, C++, Python" value="{{ profile.skills }}">
+                </div>
+
+                <div class="form-group">
+                  <label for="resume"><strong>Upload Resume</strong></label>
+                   <input type="file" class="form-control" name="resume" accept=".pdf,.doc,.docx" required>
+                </div>
+
+
+                <div class="form-group">
+                  <button type="submit" class="form-control btn btn-primary submit px-3">Register</button>
+                </div>
+                <div class="form-group d-md-flex">
+	            	<div class="w-50">
+		            	<a href="/login" style="color: #fff;"><b>Login Now</b></a>
+								</div>
+								<div class="w-50 text-md-right">
+									<a href="/index" style="color:#fff "><b>Back to Home</b></a>
+								</div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Updated static script references -->
+    <script src="{% static 'login/js/jquery.min.js' %}"></script>
+    <script src="{% static 'login/js/popper.js' %}"></script>
+    <script src="{% static 'login/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'login/js/main.js' %}"></script>
+
+  </body>
+</html>

@@ -1,0 +1,287 @@
+{% load static %}
+<!doctype html>
+<html class="no-js" lang="zxx">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Add Job Vacancy - QuickHire</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" type="image/x-icon" href="{% static 'hb/assets/img/job-portal.ico' %}">
+
+    <!-- CSS here -->
+    <link rel="stylesheet" href="{% static 'hb/assets/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'hb/assets/css/owl.carousel.min.css' %}">
+    <link rel="stylesheet" href="{% static 'hb/assets/css/flaticon.css' %}">
+    <link rel="stylesheet" href="{% static 'hb/assets/css/price_rangs.css' %}">
+    <link rel="stylesheet" href="{% static 'hb/assets/css/slicknav.css' %}">
+    <link rel="stylesheet" href="{% static 'hb/assets/css/animate.min.css' %}">
+    <link rel="stylesheet" href="{% static 'hb/assets/css/magnific-popup.css' %}">
+    <link rel="stylesheet" href="{% static 'hb/assets/css/fontawesome-all.min.css' %}">
+    <link rel="stylesheet" href="{% static 'hb/assets/css/themify-icons.css' %}">
+    <link rel="stylesheet" href="{% static 'hb/assets/css/slick.css' %}">
+    <link rel="stylesheet" href="{% static 'hb/assets/css/nice-select.css' %}">
+    <link rel="stylesheet" href="{% static 'hb/assets/css/style.css' %}">
+
+    <!-- Custom CSS -->
+    <style>
+        .form-container { max-width: 800px; margin: 0 auto; padding: 30px; background: #fff; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
+        .form-group { margin-bottom: 20px; }
+        .form-control, .form-select { border-radius: 5px; padding: 12px; font-size: 16px; }
+        .form-control::placeholder { color: #aaa; }
+        textarea.form-control { min-height: 100px; }
+        .btn-submit { background-color: #007bff; border: none; padding: 12px 30px; font-size: 16px; }
+        .btn-submit:hover { background-color: #0056b3; }
+        .sidebar { background-color: #1a1a1a; min-height: 100vh; padding-top: 20px; }
+        .sidebar .nav-item.active a { background-color: #007bff; color: #fff; }
+        .sidebar .nav-item a { color: #ccc; padding: 10px 20px; display: block; }
+        .sidebar .nav-item a:hover { color: #fff; background-color: #333; }
+        .alert { margin-bottom: 20px; }
+    </style>
+</head>
+<body>
+    <!-- Preloader Start -->
+    <!-- Preloader End -->
+
+    <header>
+        <!-- Header Start -->
+        <div class="header-area header-transparrent">
+            <div class="headder-top header-sticky">
+                <div class="container">
+                    <div class="row align-items-center">
+                        <div class="col-lg-3 col-md-2">
+                            <!-- Logo -->
+                            <div class="logo">
+                                <a href="/companypage"><img src="{% static 'hb/assets/img/logo/Quick.png' %}" alt=""></a>
+                            </div>
+                        </div>
+                        <div class="col-lg-9 col-md-9">
+                            <div class="menu-wrapper">
+                                <!-- Main-menu -->
+                                <div class="main-menu">
+                                    <nav class="d-none d-lg-block">
+                                        <ul id="navigation">
+                                            <li><a href="/companypage">Home</a></li>
+                                            <li><a href="/company_add_vacancy">Add Job Vaccancy</a></li>
+                                            <li><a href="/company_applications">Select Candidates</a></li>
+                                            <li><a href="/appoint-reject">Appoint / Reject</a></li>
+                                             <li><a href="{% url 'company_view_vacancies' %}">View Posted Vacancies</a></li>
+                                        </ul>
+                                    </nav>
+                                </div>
+
+                            </div>
+                        </div>
+                        <!-- Mobile Menu -->
+                        <div class="col-12">
+                            <div class="mobile_menu d-block d-lg-none"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Header End -->
+    </header>
+
+    <div class="wrapper d-flex">
+
+        <main class="main-panel flex-grow-1">
+            <section class="section-pad-t30">
+                <div class="container">
+                    <!-- Section Tittle -->
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="section-tittle text-center">
+                                <h2>Add New Job Vacancy</h2>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Form -->
+                    <div class="form-container">
+                        {% if messages %}
+                            <div class="alert alert-info">
+                                {% for message in messages %}
+                                    {{ message }}
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                        {% if form.errors %}
+                            <div class="alert alert-danger">
+                                <ul>
+                                    {% for field in form %}
+                                        {% for error in field.errors %}
+                                            <li>{{ field.label }}: {{ error }}</li>
+                                        {% endfor %}
+                                    {% endfor %}
+                                    {% for error in form.non_field_errors %}
+                                        <li>{{ error }}</li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                        {% endif %}
+                        <form method="post">
+                            {% csrf_token %}
+                            <div class="form-group">
+                                <label for="title">Job Title</label>
+                                <input type="text" name="title" id="title" class="form-control" placeholder="Enter Job Title" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="description">Job Description</label>
+                                <textarea name="description" id="description" class="form-control" placeholder="Enter Job Description" required></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="location">Location</label>
+                                <input type="text" name="location" id="location" class="form-control" placeholder="City, State, Remote/Hybrid" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="responsibilities">Roles & Responsibilities</label>
+                                <textarea name="responsibilities" id="responsibilities" class="form-control" placeholder="Enter Roles & Responsibilities" required></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="number_of_vacancies">Number of Vacancies</label>
+                                <input type="number" name="number_of_vacancies" id="number_of_vacancies" class="form-control" placeholder="Enter Number of Vacancies" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="salary_range">Salary Range</label>
+                                <input type="text" name="salary_range" id="salary_range" class="form-control" placeholder="Salary Range or 'Negotiable'" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="work_experience">Work Experience</label>
+                                <input type="text" name="work_experience" id="work_experience" class="form-control" placeholder="e.g., 0-1 years" required>
+                            </div>
+                            <div class="form-group">
+                            <label for="skills_required">Skills Required</label>
+                            <input type="text" name="skills_required" id="skills_required" class="form-control" placeholder="Enter skills (e.g., Python, Django, JavaScript)" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="qualification_required">Qualifications</label>
+                                <input type="text" name="qualification_required" id="qualification_required" class="form-control" placeholder="e.g., B.Tech, MBA" required>
+                            </div>
+                            <div class="form-group">
+                            <label for="last_date_to_apply">Deadline (Last Date to Apply)</label>
+                            <input type="date" name="last_date_to_apply" id="last_date_to_apply" class="form-control" required>
+                            </div>
+                            <div class="form-group text-center">
+                                <button type="submit" class="btn btn-primary">Post Job</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <footer>
+        <!-- Footer Start-->
+        <div class="footer-area footer-bg footer-padding">
+            <div class="container">
+                <div class="row d-flex justify-content-between">
+                    <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6">
+                       <div class="single-footer-caption mb-50">
+                         <div class="single-footer-caption mb-30">
+                             <div class="footer-tittle">
+                                 <h4>About Us</h4>
+                                 <div class="footer-pera">
+                                     <p>We create endless opportunities, connecting job seekers with top employers. Empowering careers and businesses, we make hiring simple, efficient, and seamless.</p>
+                                </div>
+                             </div>
+                         </div>
+
+                       </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-4 col-sm-5">
+                        <div class="single-footer-caption mb-50">
+                            <div class="footer-tittle">
+                                <h4>Contact Info</h4>
+                                <ul>
+                                    <li>
+                                    <p>QuickHire HQ <br>
+                                        45th Building, Career Hub Tower,<br>
+                                        Tech Park,
+                                        Kochi,<br>Kerala </p>
+                                    </li>
+                                    <li><a href="tel:+919876543210">Phone : +91 9876543210</a></li>
+                                    <li><a href="mailto:contact@quickhire.com">Email Us: contact@quickhire.com </a></li>
+                                </ul>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-4 col-sm-5">
+                        <div class="single-footer-caption mb-50">
+                            <div class="footer-tittle">
+                                <h4>Important Link</h4>
+                                <ul>
+                                    <li><a href="/companypage">Home</a></li>
+                                    <li><a href="/company_add_vacancy">Add Job Vacancy</a></li>
+                                    <li><a href="/company_applications">Select Candidates</a></li>
+                                    <li><a href="/appoint-reject">Appoint / Reject</a></li>
+                                    <li><a href="{% url 'login' %}">User Login</a></li>
+                                    <li><a href="{% url 'company_view_vacancies' %}">View Posted Vacancies</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+               <!--  -->
+               <div class="row footer-wejed justify-content-between">
+                    <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6">
+
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-4 col-sm-5">
+                    <div class="footer-tittle-bottom">
+                        <span>5000+</span>
+                        <p>Skilled Professionals</p>
+                    </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-4 col-sm-5">
+                        <div class="footer-tittle-bottom">
+                            <span>450+</span>
+                            <p>Job Seekers</p>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-3 col-md-4 col-sm-5" >
+                        <!-- Footer Bottom Tittle -->
+                        <div class="footer-tittle-bottom">
+                            <span>600+</span>
+                            <p>Career Achievers</p>
+                        </div>
+                    </div>
+               </div>
+            </div>
+        </div>
+        <!-- footer-bottom area -->
+        <div class="footer-bottom-area footer-bg">
+            <div class="container">
+                <div class="footer-border">
+                     <div class="row d-flex justify-content-between align-items-center">
+                         <div class="col-xl-10 col-lg-10 ">
+                             <div class="footer-copy-right">
+                                 <p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+  Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved
+  <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
+                             </div>
+                         </div>
+                         <div class="col-xl-2 col-lg-2">
+                             <div class="footer-social f-right">
+                                 <a href="#"><i class="fab fa-facebook-f"></i></a>
+                                 <a href="#"><i class="fab fa-twitter"></i></a>
+                                 <a href="#"><i class="fas fa-globe"></i></a>
+                                 <a href="#"><i class="fab fa-behance"></i></a>
+                             </div>
+                         </div>
+                     </div>
+                </div>
+            </div>
+        </div>
+        <!-- Footer End-->
+    </footer>
+
+    <!-- JS here -->
+    <script src="{% static 'hb/assets/js/vendor/modernizr-3.5.0.min.js' %}"></script>
+    <script src="{% static 'hb/assets/js/vendor/jquery-1.12.4.min.js' %}"></script>
+    <script src="{% static 'hb/assets/js/popper.min.js' %}"></script>
+    <script src="{% static 'hb/assets/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'hb/assets/js/jquery.slicknav.min.js' %}"></script>
+    <script src="{% static 'hb/assets/js/owl.carousel.min.js' %}"></script>
+    <script src="{% static 'hb/assets/js/slick.min.js' %}"></script>
