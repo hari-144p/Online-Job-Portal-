@@ -91,10 +91,10 @@ Follow these steps to set up the project on your local machine using the ZIP fil
 
 ## Screenshots
 
-![Image 1](images/scrnli_DgpzIA4zc0tXJF.png)
-![Image 2](images/scrnli_F4ghNpVmG0JWPw.png)
-![Image 3](images/scrnli_Uz29RMZyc0tMeV.png)
-![Image 4](images/scrnli_g4V09VU680tbuj.png)
-![Image 5](images/scrnli_gMi716NhB0muh7.png)
-![Image 6](images/scrnli_kPz3aJ1JA0LITc.png)
-![Image 7](images/scrnli_weHy2X1u20kBBh.png)
+![Image 1](scrnli_DgpzIA4zc0tXJF.png)
+![Image 2](scrnli_F4ghNpVmG0JWPw.png)
+![Image 3](scrnli_Uz29RMZyc0tMeV.png)
+![Image 4](scrnli_g4V09VU680tbuj.png)
+![Image 5](scrnli_gMi716NhB0muh7.png)
+![Image 6](scrnli_kPz3aJ1JA0LITc.png)
+![Image 7](scrnli_weHy2X1u20kBBh.png)
