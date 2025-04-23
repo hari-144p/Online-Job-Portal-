@@ -42,6 +42,50 @@ This Python-based Online Job Portal, developed using the Django web framework, s
 - **Development Environment:** VS Code, PyCharm, or similar IDEs
 
 ## Installation
-1. **Clone the repository:**
+
+Follow these steps to set up the project on your local machine using the ZIP file:
+
+1. **Download the project ZIP:**
+
+   - Go to the [GitHub repository](https://github.com/yourusername/job-portal-project).
+   - Click on the green **Code** button and select **Download ZIP**.
+   - Extract the ZIP file to your desired location.
+
+2. **Navigate to Pycharm and open the extracted file as new project:**
+
    ```bash
-   git clone https://github.com/yourusername/job-portal-project.git
+   open as new project
+   
+3. **Install the required dependencies:**
+
+   ```bash
+   pip install django
+   pip install pyttsx3
+   pip install pillow
+   
+4. **Apply database migrations:**
+
+   Run the following commands to create the necessary database tables:
+
+   ```bash
+   python manage.py makemigrations
+   python manage.py migrate
+   
+5. **Create a superuser (for admin access):**
+
+   Run the following command to create an admin account:
+
+   ```bash
+   python manage.py createsuperuser
+   
+6. **Run the development server:**
+
+   To start the development server, use the following command:
+
+   ```bash
+   python manage.py runserver
+7. **Access the application:**
+
+   - Open your web browser and go to `http://127.0.0.1:8000/` to use the Job Portal.
+   - To access the django admin panel, go to `http://127.0.0.1:8000/admin/` and log in using the superuser credentials you created in Step 5.
+
