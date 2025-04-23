@@ -89,3 +89,12 @@ Follow these steps to set up the project on your local machine using the ZIP fil
    - Open your web browser and go to `http://127.0.0.1:8000/` to use the Job Portal.
    - To access the django admin panel, go to `http://127.0.0.1:8000/admin/` and log in using the superuser credentials you created in Step 5.
 
+## Screenshots
+
+![Image 1](images/scrnli_DgpzIA4zc0tXJF.png)
+![Image 2](images/scrnli_F4ghNpVmG0JWPw.png)
+![Image 3](images/scrnli_Uz29RMZyc0tMeV.png)
+![Image 4](images/scrnli_g4V09VU680tbuj.png)
+![Image 5](images/scrnli_gMi716NhB0muh7.png)
+![Image 6](images/scrnli_kPz3aJ1JA0LITc.png)
+![Image 7](images/scrnli_weHy2X1u20kBBh.png)
